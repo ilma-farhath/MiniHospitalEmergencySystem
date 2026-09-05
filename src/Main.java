@@ -4,15 +4,21 @@ import service.HospitalService;
 
 import java.util.Scanner;
 
+// Main class of the Hospital Emergency Management System
 public class Main {
 
     public static void main(String[] args) {
 
+        // Scanner object for user input
         Scanner sc = new Scanner(System.in);
+
+        // Create hospital service object
         HospitalService hospital = new HospitalService();
 
+        // Run menu continuously until user exits
         while (true) {
 
+            // Display system menu
             System.out.println("\n===== MINI HOSPITAL EMERGENCY MANAGEMENT SYSTEM =====");
 
             System.out.println("1. Add Patient");
@@ -35,12 +41,14 @@ public class Main {
 
             System.out.println("15. Exit");
 
+            // Get user choice
             System.out.print("Choose Option: ");
             int choice = sc.nextInt();
             sc.nextLine();
 
             switch (choice) {
 
+                // Add a new patient
                 case 1:
 
                     System.out.print("Patient ID: ");
@@ -69,6 +77,7 @@ public class Main {
                     System.out.println("Patient Added!");
                     break;
 
+                // Search patient by ID
                 case 2:
 
                     System.out.print("Enter Patient ID: ");
@@ -84,6 +93,7 @@ public class Main {
 
                     break;
 
+                // Delete patient
                 case 3:
 
                     System.out.print("Enter Patient ID: ");
@@ -94,11 +104,13 @@ public class Main {
                     System.out.println("Patient Deleted");
                     break;
 
+                // Display all patients in BST
                 case 4:
 
                     hospital.patientBST.displayPatients();
                     break;
 
+                // Add patient to emergency queue
                 case 5:
 
                     System.out.print("Enter Existing Patient ID: ");
@@ -118,6 +130,7 @@ public class Main {
 
                     break;
 
+                // Treat next patient in queue
                 case 6:
 
                     Patient treated =
@@ -129,6 +142,7 @@ public class Main {
                                 "Now Treating: "
                                         + treated.getName());
 
+                        // Store treatment record in stack
                         hospital.treatmentStack.pushTreatment(
                                 "Treatment completed for "
                                         + treated.getName()
@@ -137,11 +151,13 @@ public class Main {
 
                     break;
 
+                // Display all patients in queue
                 case 7:
 
                     hospital.emergencyQueue.displayQueue();
                     break;
 
+                // Add treatment record to stack
                 case 8:
 
                     System.out.print("Enter Treatment Record: ");
@@ -152,18 +168,21 @@ public class Main {
 
                     break;
 
+                // Remove last treatment record
                 case 9:
 
                     hospital.treatmentStack.popTreatment();
 
                     break;
 
+                // Display treatment history
                 case 10:
 
                     hospital.treatmentStack.displayTreatments();
 
                     break;
 
+                // Add a patient visit
                 case 11:
 
                     System.out.print("Visit ID: ");
@@ -197,6 +216,7 @@ public class Main {
 
                     break;
 
+                // Search visit by Visit ID
                 case 12:
 
                     System.out.print("Enter Visit ID: ");
@@ -213,6 +233,7 @@ public class Main {
 
                     break;
 
+                // Remove visit record
                 case 13:
 
                     System.out.print("Enter Visit ID: ");
@@ -225,18 +246,23 @@ public class Main {
 
                     break;
 
+                // Display all visit records
                 case 14:
 
                     hospital.visitLinkedList.displayVisits();
 
                     break;
 
+                // Exit program
                 case 15:
 
                     System.out.println("System Closed");
+
                     sc.close();
+
                     return;
 
+                // Invalid menu option
                 default:
 
                     System.out.println("Invalid Choice");
